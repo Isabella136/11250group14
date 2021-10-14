@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon backend/server.js",
-    "client":"npm start --prefix frontend",
-    "dev":"concurrently \"npm start\" \"npm run client\""
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "keywords": [
     "nodejs",
