@@ -28,6 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
 
+    //use nodemailer to send email to user on creation of account
     let transporter = nodemailer.createTransport({
       service: "hotmail",
       auth: {
