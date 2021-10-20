@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const User = require("../models/user_model");
 const generateToken = require("../utils/generate_token");
+const nodemailer = require("nodemailer");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -26,6 +27,31 @@ const registerUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
+
+    let transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: "carbonzeroteam@outlook.com",
+        pass: "C@rbon021"
+      }
+    });
+
+    var mailOptions = {
+        from: 'carbonzeroteam@outlook.com', //sender address
+        to: user.email, //This can also contain an array of emails
+        subject: 'Thanks for registering with CarbonZero',
+        //text
+        html: '<b style="font-size: 20pt">Welcome to CarbonZero!</b><br><p>You are on your way to a greener lifestyle. Use this link to start inputting your carboon footprint data.</p>' // html body
+    };
+
+    //send mail with defined transport object
+    await transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent ' + info.response);
+    });
+
   }
 
   else {

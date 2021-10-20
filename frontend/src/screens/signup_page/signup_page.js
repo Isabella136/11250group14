@@ -21,8 +21,12 @@ const SignupPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if(!validPassword.test(password)) {
-      setMessage("Password must be at least 9 characters\nPassword must contain at least one number, one uppercase letter, and one lowercase letter");
+    if(password.length < 9) {
+      setMessage("Password must be at least 9 characters");
+    }
+
+    else if(!validPassword.test(password)) {
+      setMessage("Password must contain at least one number, one uppercase letter, and one lowercase letter");
     }
 
     else if(password !== confirmPassword) {
@@ -46,6 +50,7 @@ const SignupPage = () => {
           config
         );
 
+        console.log(data);
         setLoading(false);
         localStorage.setItem("userInfo", JSON.stringify(data));
       }
@@ -53,9 +58,6 @@ const SignupPage = () => {
         setError(error.response.data.message);
       }
     }
-    //else {
-
-    //}
   };
 
   return (
