@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MainScreen from "../../components/main_screen";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../../components/loading";
 import ErrorMessage from "../../components/error_message";
 import { useDispatch, useSelector } from "react-redux";

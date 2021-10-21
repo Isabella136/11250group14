@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 import { Button, Card, Accordion} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import MainScreen from "../../components/main_screen";
 import axios from "axios";
 
 const MyData = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [notes, setNotes] = useState([])
 
   const deleteHandler = (id) => {
@@ -25,7 +29,7 @@ const MyData = () => {
   }, [])
 
     return (
-      <MainScreen title="Welcome Back">
+      <MainScreen title={`Welcome Back ${userInfo && userInfo.name}!`}>
         <Link to='createnote'>
           <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
             Create New Note
