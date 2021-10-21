@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
 import MainScreen from "../../components/main_screen";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Loading from "../../components/loading";
 import ErrorMessage from "../../components/error_message";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../actions/user_actions";
 
-const SignupPage = () => {
+const SignupPage = ({history}) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const userSignup = useSelector((state) => state.userSignup);
+  const { loading, error, userInfo } = userSignup;
+
+  useEffect(() => {
+     if(userInfo) {
+       history.push("/mydata");
+     }
+   }, [history, userInfo]);
   //regex for password validaion
   const validPassword = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}$");
 
@@ -34,29 +43,7 @@ const SignupPage = () => {
     }
 
     else {
-      setMessage(null);
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/api/users",
-          { name, email, password },
-          config
-        );
-
-        console.log(data);
-        setLoading(false);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-      }
-      catch (error) {
-        setError(error.response.data.message);
-      }
+      dispatch(signup(name, email, password));
     }
   };
 

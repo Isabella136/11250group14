@@ -2,6 +2,7 @@
   min-height: 93vh;
   display: flex;
   align-items: center;
+  background-image: url("../../background.png");
   background-position: center;
   background-size: cover;
 }
@@ -27,7 +28,7 @@
   justify-content: space-evenly;
 }
 
-.landingbutton {
+.landingbutton, .signupbutton {
   width: 200px;
   height: 55px;
 }

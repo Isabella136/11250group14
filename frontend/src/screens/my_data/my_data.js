@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import MainScreen from "../../components/main_screen";
 import axios from "axios";
 
-const MyNotes = () => {
+const MyData = () => {
   const [notes, setNotes] = useState([])
 
   const deleteHandler = (id) => {
@@ -25,7 +25,7 @@ const MyNotes = () => {
   }, [])
 
     return (
-      <MainScreen title="Welcome Back Chance Onyiorah">
+      <MainScreen title="Welcome Back">
         <Link to='createnote'>
           <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
             Create New Note
@@ -74,4 +74,4 @@ const MyNotes = () => {
 };
 
 
-export default MyNotes;
+export default MyData;

@@ -3,41 +3,31 @@ import MainScreen from "../../components/main_screen";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './login_page.css';
-import axios from "axios";
 import Loading from "../../components/loading";
 import ErrorMessage from "../../components/error_message";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../actions/user_actions";
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
 
-     const submitHandler = async (e) => {
+    //dispatch calls reducer with user login request
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { loading, error, userInfo } = userLogin;
+
+    useEffect(() => {
+      if(userInfo) {
+        history.push("/mydata");
+      }
+    }, [history, userInfo]);
+
+    const submitHandler = async (e) => {
       e.preventDefault();
 
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/api/users/login",
-          { email, password },
-          config
-        );
-
-        console.log(data);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
-      } catch (error) {
-          setError(error.response.data.message);
-          setLoading(false);
-      }
+      dispatch(login(email, password));
     };
 
     return (

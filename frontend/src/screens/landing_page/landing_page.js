@@ -4,13 +4,13 @@ import "./landing_page.css";
 
 const LandingPage = ({history}) => {
 
-    //useEffect(() => {
-      //const userInfo = localStorage.getItem("userInfo");
+    useEffect(() => {
+      const userInfo = localStorage.getItem("userInfo");
 
-      //if(userInfo) {
-        //history.push("/mynotes");
-      //}
-    //}, [history]);
+      if(userInfo) {
+        history.push("/mydata");
+      }
+    }, [history]);
 
     return <div className='main'>
       <Container>
@@ -27,7 +27,7 @@ const LandingPage = ({history}) => {
                   <a href="/signup">
                     <Button
                       size='lg'
-                      className='landingbutton'
+                      className='signupbutton'
                       variant='outline-primary'
                     >
                       Sign Up</Button>
