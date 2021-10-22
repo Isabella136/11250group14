@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
         to: user.email, //This can also contain an array of emails
         subject: 'Thanks for registering with CarbonZero',
         //text
-        html: '<b style="font-size: 20pt">Welcome to CarbonZero!</b><br><p>You are on your way to a greener lifestyle. Use this link to start inputting your carboon footprint data.</p>' // html body
+        html: '<b style="font-size: 20pt">Welcome to CarbonZero!</b><br><p>You are on your way to a greener lifestyle. Start inputting your carbon footprint data now.</p>' // html body
     };
 
     //send mail with defined transport object
