@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { Form, FormControl, Container, NavDropdown, Nav, Navbar } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/user_actions";
 
 const Header = (setSearch) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const logoutHandler = () => {
     dispatch(logout());
+    history.push("/");
   };
 
     useEffect(() => {}, [userInfo]);
