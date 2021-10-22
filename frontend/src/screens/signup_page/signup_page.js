@@ -43,6 +43,7 @@ const SignupPage = ({history}) => {
     }
 
     else {
+      setMessage(null);
       dispatch(signup(name, email, password));
     }
   };
