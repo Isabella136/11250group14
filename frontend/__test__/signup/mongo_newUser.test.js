@@ -13,14 +13,12 @@ describe('Insert new user into database', () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
-
-    User.deleteOne({email: 'jennie@gmail.com'});
-    //db = await connection.db(global.__MONGO_DB_NAME__);
-    //db = await mongoose.connect(process.env.MONGO_URI);
   });
 
   afterAll(async () => {
-    User.deleteOne({email: 'jennie@gmail.com'});
+    //delete inserted user after each test for next test
+    await User.deleteOne({email: 'jennie@gmail.com'});
+    await mongoose.connection.close();
   });
 
   it('Inserts a valid new user into database, returns same user when email is searched', async () => {

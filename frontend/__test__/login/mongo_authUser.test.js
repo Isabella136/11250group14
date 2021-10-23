@@ -17,9 +17,9 @@ describe('Authenticate user from database', () => {
     //db = await mongoose.connect(process.env.MONGO_URI);
   });
 
-  //afterAll(async () => {
-    //await connection.close();
-  //});
+  afterAll(async () => {
+    await mongoose.connection.close();
+  });
 
   it('Inputs valid email and password and returns "User found"', async () => {
     const testUser = {email: 'carbonzeroteam@outlook.com', password: 'C@rbon021'};
