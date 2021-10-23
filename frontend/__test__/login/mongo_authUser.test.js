@@ -21,7 +21,7 @@ describe('Authenticate user from database', () => {
     await mongoose.connection.close();
   });
 
-  it('Inputs valid email and password and returns "User found"', async () => {
+  it('Inputs valid email and password and returns "User found"\n', async () => {
     const testUser = {email: 'carbonzeroteam@outlook.com', password: 'C@rbon021'};
     var message = null;
 
@@ -38,7 +38,7 @@ describe('Authenticate user from database', () => {
     expect(message).toEqual("User found");
   });
 
-  it('Inputs invalid email and returns "carbonzero@outlook.com"', async () => {
+  it('Inputs invalid email and returns "carbonzero@outlook.com"\n', async () => {
     const testUser = {email: 'carbonzero@outlook.com', password: 'C@rbon021'};
     var message = null;
 
@@ -55,7 +55,7 @@ describe('Authenticate user from database', () => {
     expect(message).toEqual("Invalid email or password");
   });
 
-  it('Inputs valid email but invalid password returns "carbonzero@outlook.com"', async () => {
+  it('Inputs valid email but invalid password returns "Invalid email or password"\n', async () => {
     const testUser = {email: 'carbonzeroteam@outlook.com', password: 'Carbon021'};
     var message = null;
 
@@ -70,5 +70,22 @@ describe('Authenticate user from database', () => {
     }
 
     expect(message).toEqual("Invalid email or password");
+  });
+
+  it("No email or password is entered returns 'Invalid email or password' errorMessage and accountCreated is false\n", async () => {
+    const testUser = {email: '', password: ''};
+    var message = null;
+
+    const user = await User.findOne({email: ''});
+
+    if(user && (await user.matchPassword(testUser.password))) {
+      message = "User found";
+    }
+
+    else {
+      message = "Invalid email or password";
+    }
+
+    expect(message).toStrictEqual("Invalid email or password");
   });
 });

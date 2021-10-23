@@ -21,7 +21,7 @@ describe('Insert new user into database', () => {
     await mongoose.connection.close();
   });
 
-  it('Inserts a valid new user into database, returns same user when email is searched', async () => {
+  it('Inserts a valid new user into database, returns same user when email is searched\n', async () => {
     //const users = connection.collection('users');
 
     //assuming password meets requirements
@@ -34,7 +34,7 @@ describe('Insert new user into database', () => {
 
   });
 
-  it('Tries to insert a new user with email already in-use, returns error', async () => {
+  it('Tries to insert a new user with email already in-use, returns error\n', async () => {
     //const users = connection.collection('users');
 
     //assuming password meets requirements

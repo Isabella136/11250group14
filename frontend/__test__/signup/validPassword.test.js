@@ -5,14 +5,7 @@ import { Provider } from "react-redux";
 import store from '../../src/store';
 const validatePassword = require("../../src/screens/signup_page/validatePassword");
 
-describe("Signup form Page", () => {
-  it("renders without crashing\n", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<Provider store = {store}><SignupPage /></Provider>, div);
-  });
-});
-
-describe("Password Validation", () => {
+describe("Password Validation when Signing up", () => {
   test("takes in same value for password and confirmPassword and returns null for errorMessage and accountCreated is true\n", () => {
     const password = "Testing123";
     const confirmPassword = "Testing123";
