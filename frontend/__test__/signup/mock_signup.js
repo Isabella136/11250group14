@@ -2,10 +2,10 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Loading from "../../../components/loading";
-import ErrorMessage from "../../../components/error_message";
+import Loading from "../../src/components/loading";
+import ErrorMessage from "../../src/components/error_message";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../../actions/user_actions";
+import { signup } from "../../src/actions/user_actions";
 
 const SignupPage = ({history}) => {
   const [email, setEmail] = useState("");

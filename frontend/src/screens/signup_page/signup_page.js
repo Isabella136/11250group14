@@ -6,7 +6,7 @@ import Loading from "../../components/loading";
 import ErrorMessage from "../../components/error_message";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions/user_actions";
-const validatePassword = require("./__test__/validatePassword");
+const validatePassword = require("./validatePassword");
 
 const SignupPage = ({history}) => {
   const [email, setEmail] = useState("");

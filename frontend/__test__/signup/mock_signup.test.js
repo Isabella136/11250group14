@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SignupPage from './mock_signup';
 import { Provider } from "react-redux";
-import store from '../../../store';
-const validatePassword = require("./validatePassword");
+import store from '../../src/store';
+const validatePassword = require("../../src/screens/signup_page/validatePassword");
 
 describe("Signup form Page", () => {
-  it("renders without crashing", () => {
+  it("renders without crashing\n", () => {
     const div = document.createElement("div");
     ReactDOM.render(<Provider store = {store}><SignupPage /></Provider>, div);
   });
@@ -37,6 +37,13 @@ describe("Password Validation", () => {
   test("takes in password with less than 9 characters and different confirmPassword and returns 'Password must be at least 9 characters' errorMessage and accountCreated is false\n", () => {
     const password = "Pass1";
     const confirmPassword = "Pass12";
+
+    expect(validatePassword(password, confirmPassword)).toStrictEqual(["Password must be at least 9 characters", false]);
+  });
+
+  test("No password is entered returns 'Password must be at least 9 characters' errorMessage and accountCreated is false\n", () => {
+    const password = "";
+    const confirmPassword = "";
 
     expect(validatePassword(password, confirmPassword)).toStrictEqual(["Password must be at least 9 characters", false]);
   });
