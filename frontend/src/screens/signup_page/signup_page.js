@@ -6,6 +6,7 @@ import Loading from "../../components/loading";
 import ErrorMessage from "../../components/error_message";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions/user_actions";
+const validatePassword = require("./__test__/validatePassword");
 
 const SignupPage = ({history}) => {
   const [email, setEmail] = useState("");
@@ -24,22 +25,19 @@ const SignupPage = ({history}) => {
        history.push("/mydata");
      }
    }, [history, userInfo]);
-  //regex for password validaion
-  const validPassword = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{9,}$");
+
+  var errorMessage = null;
+  var createAccount = false;
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if(password.length < 9) {
-      setMessage("Password must be at least 9 characters");
-    }
+    //check if password meets requirements
+    [errorMessage, createAccount] = validatePassword(password, confirmPassword);
 
-    else if(!validPassword.test(password)) {
-      setMessage("Password must contain at least one number, one uppercase letter, and one lowercase letter");
-    }
-
-    else if(password !== confirmPassword) {
-      setMessage("Passwords do not match");
+    if(errorMessage)
+    {
+      setMessage(errorMessage);
     }
 
     else {
