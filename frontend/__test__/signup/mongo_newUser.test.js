@@ -22,8 +22,6 @@ describe('Insert new user into database', () => {
   });
 
   it('Inserts a valid new user into database, returns same user when email is searched\n', async () => {
-    //const users = connection.collection('users');
-
     //assuming password meets requirements
     const mockUser = {name: 'Jennie', email: 'jennie@gmail.com', password: 'Jennie123'};
 
@@ -35,8 +33,6 @@ describe('Insert new user into database', () => {
   });
 
   it('Tries to insert a new user with email already in-use, returns error\n', async () => {
-    //const users = connection.collection('users');
-
     //assuming password meets requirements
     const mockUser = {name: 'Jesy', email: 'test@example.com', password: 'Jessyyy123'};
     var errorMessage = null;

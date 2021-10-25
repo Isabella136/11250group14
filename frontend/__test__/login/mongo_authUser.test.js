@@ -38,7 +38,7 @@ describe('Authenticate user from database', () => {
     expect(message).toEqual("User found");
   });
 
-  it('Inputs invalid email and returns "carbonzero@outlook.com"\n', async () => {
+  it('Inputs invalid email and returns "Invalid email or password"\n', async () => {
     const testUser = {email: 'carbonzero@outlook.com', password: 'C@rbon021'};
     var message = null;
 
