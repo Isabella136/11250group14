@@ -1,6 +1,8 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+orbs:
+  node: circleci/node@4.7.0
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -22,12 +24,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Install pip
-          command: sudo easy_install pip
-      - run:
-          name: Install npm
-          command: sudo -H pip install npm
       - restore_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
       - run:
