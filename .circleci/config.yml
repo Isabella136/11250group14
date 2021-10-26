@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-  jest:
+  build:
     steps:
       - checkout
       - run:
