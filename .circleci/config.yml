@@ -35,6 +35,9 @@ jobs:
 
     steps:
       - checkout
+      - node/install:
+          install-npm: true
+      - run: node --version
       - restore_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
       - run:
