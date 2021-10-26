@@ -22,6 +22,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Install npm
+          command: sudo -H pip install npm
       - restore_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
       - run:
