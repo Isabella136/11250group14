@@ -17,6 +17,9 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
   build:
+    docker:
+      - image: cimg/base:stable
+
     steps:
       - checkout
       - run:
