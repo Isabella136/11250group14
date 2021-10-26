@@ -16,6 +16,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+    jest:
       - run:
           name: "Run Tests"
           command: "npm test"
