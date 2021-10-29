@@ -7,6 +7,7 @@ function App() {
     <div className='rowC'>
         <ChartSettings />
         <LineChart />
+        <LineChart />
     </div>
   );
 }
