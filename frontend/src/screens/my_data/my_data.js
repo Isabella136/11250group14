@@ -6,10 +6,11 @@ import MainScreen from "../../components/main_screen";
 import axios from "axios";
 
 const MyData = () => {
+
+  const [data, setData] = useState([]);
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const [notes, setNotes] = useState([])
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -17,15 +18,22 @@ const MyData = () => {
     }
   };
 
-  const fetchNotes = async () => {
-    const { data } = await axios.get("/api/notes");
-    setNotes(data);
+  //user authorization
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+    },
   };
 
-  console.log(notes);
+  const fetchData = async () => {
+    const { data } = await axios.get("/api/data", config);
+    setData(data);
+  };
+
+  console.log(data);
 
   useEffect(() => {
-    fetchNotes();
+    fetchData();
   }, [])
 
     return (
@@ -36,8 +44,8 @@ const MyData = () => {
           </Button>
         </Link>
             {
-              notes.map(note => (
-                <Accordion key={note._id}>
+              data.map(mockdata => (
+                <Accordion key={mockdata._id}>
                   <Card style={{ margin:10 }}>
                     <Card.Header style={{ display: "flex" }}>
                       <span
@@ -50,22 +58,21 @@ const MyData = () => {
                               fontSize: 18,
                             }}
                         >
-                        {note.title}
+                        {mockdata.month}
                         </span>
                       <div>
-                        <Button href={`/note/${note._id}`}>Edit</Button>
-                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(note._id)}>
+                        <Button href={`/data/${mockdata._id}`}>Edit</Button>
+                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(data._id)}>
                           Delete
                         </Button>
                       </div>
                     </Card.Header>
                     <Card.Body>
                     <blockquote className="blockquote mb-0">
-                      <p>
-                        {note.content}
-                      </p>
+                      <p>{mockdata.type}</p>
+                      <p>{mockdata.value}</p>
                       <footer className="blockquote-footer">
-                        Created On -date
+                        Created On -{mockdata.createdAt}
                       </footer>
                     </blockquote>
                     </Card.Body>

@@ -1,6 +1,6 @@
 {
   "name": "carbonzero",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Node.js Restful CRUD API with Node.js, Express, and MongoDB",
   "main": "server.js",
   "scripts": {
@@ -29,10 +29,14 @@
   "license": "ISC",
   "dependencies": {
     "@shelf/jest-mongodb": "^2.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "chart.js": "^3.6.0",
     "concurrently": "^6.3.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -43,13 +47,16 @@
     "node": "^14.18.1",
     "nodemailer": "^6.7.0",
     "nodemon": "^2.0.13",
+    "react": "^17.0.2",
     "react-bootstrap": "^2.0.0",
+    "react-chartjs-2": "^3.3.0",
+    "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "4.0.3",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^1.1.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -65,9 +72,7 @@
     "jest-dom": "^4.0.0",
     "jsdom": "18.0.0",
     "jsdom-global": "3.0.2",
-    "react": "^16.14.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.14.0",
     "react-test-renderer": "16.9.0"
   }
 }
