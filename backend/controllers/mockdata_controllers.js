@@ -8,14 +8,15 @@ const getData = asyncHandler(async (req, res) => {
 });
 
 const addData = asyncHandler(async (req, res) => {
-  const { month, type, value } = req.body;
+  const { elecConsumption, elecCost, waterConsumption,
+  waterCost, gasConsumption } = req.body;
 
-  if (!month || !type || !value) {
+  if (!elecConsumption || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
     throw new Error("Please fill out all fields");
   }
 
   else {
-    const data = new MockData({ user: req.user._id, month, type, value});
+    const data = new MockData({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption});
     const dataAdded = await data.save();
 
     res.status(201).json(dataAdded);

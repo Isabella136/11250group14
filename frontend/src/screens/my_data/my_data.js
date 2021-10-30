@@ -58,7 +58,7 @@ const MyData = () => {
                               fontSize: 18,
                             }}
                         >
-                        {mockdata.month}
+                        Created On: {mockdata.createdAt}
                         </span>
                       <div>
                         <Button href={`/data/${mockdata._id}`}>Edit</Button>
@@ -69,10 +69,13 @@ const MyData = () => {
                     </Card.Header>
                     <Card.Body>
                     <blockquote className="blockquote mb-0">
-                      <p>{mockdata.type}</p>
-                      <p>{mockdata.value}</p>
+                      <p>Electric Consumption: {mockdata.elecConsumption}</p>
+                      <p>Electric Cost: {mockdata.elecCost}</p>
+                      <p>Water Consumption: {mockdata.waterConsumption}</p>
+                      <p>Water Cost: {mockdata.waterCost}</p>
+                      <p>Gas Consumption: {mockdata.gasConsumption}</p>
                       <footer className="blockquote-footer">
-                        Created On -{mockdata.createdAt}
+                        Updated On -{mockdata.updatedAt}
                       </footer>
                     </blockquote>
                     </Card.Body>

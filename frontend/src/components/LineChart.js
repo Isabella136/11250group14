@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const LineChart = ({history}) => {
+const LineChart = ({}) => {
   const [data, setData] = useState([]);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -29,8 +29,14 @@ const LineChart = ({history}) => {
     fetchData();
   }, [])
 
+const elecConsumptions = data.map((mockdata) => mockdata.elecConsumption);
+const elecCosts = data.map((mockdata) => mockdata.elecCost);
+const waterConsumptions = data.map((mockdata) => mockdata.waterConsumption);
+const waterCosts = data.map((mockdata) => mockdata.waterCost);
+const gasConsumptions = data.map((mockdata) => mockdata.gasConsumption);
+
 const chartData = {
-    labels: data.map((mockdata) => (mockdata.month)), //months
+    labels: data.map((mockdata) => (mockdata.createdAt)), //timestamps, find a function to get in different format
     datasets: [
         {
             label: "Total Carbon Footprint", //record type
@@ -71,6 +77,13 @@ const options = {
       <div className="graphContainer">
         <p> Carbon Footprint Data Over Time</p>
         <div className="graph">
+          <div className="dataValues">
+            Electric Consumptions: {elecConsumptions.map(elecConsumption => <p>{elecConsumption}</p>)}
+            Electric Costs: {elecCosts.map(elecCost => <p>{elecCost}</p>)}
+            Water Consumptions: {waterConsumptions.map(waterConsumption => <p>{waterConsumption}</p>)}
+            Water Costs: {waterCosts.map(waterCost => <p>{waterCost}</p>)}
+            Gas Consumptions: {gasConsumptions.map(gasConsumption => <p>{gasConsumption}</p>)}
+          </div>
           <Line data={chartData} options={options}/>
         </div>
       </div>
