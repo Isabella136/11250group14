@@ -39,12 +39,12 @@ jobs:
           install-npm: true
       - run: node --version
       - restore_cache:
-          key: npm-cache-v1-{{ checksum "https://github.com/Isabella136/11250group14/blob/62da1376a0970b784bb39684e5019244eb46ba79/package-lock.json" }}
+          key: npm-cache-v1-{{ checksum https://github.com/Isabella136/11250group14/blob/62da1376a0970b784bb39684e5019244eb46ba79/package-lock.json }}
       - run:
           name: Install Dependencies
           command: npm ci
       - save_cache:
-          key: npm-cache-v1-{{ checksum "https://github.com/Isabella136/11250group14/blob/62da1376a0970b784bb39684e5019244eb46ba79/package-lock.json" }}
+          key: npm-cache-v1-{{ checksum https://github.com/Isabella136/11250group14/blob/62da1376a0970b784bb39684e5019244eb46ba79/package-lock.json }}
           paths:
             - /home/circleci/.npm
       - run:
