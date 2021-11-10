@@ -36,4 +36,23 @@ const getDataById = asyncHandler(async (req, res) => {
 
 });
 
-module.exports = { getData, addData, getDataById };
+//test code added by Ryan Roth
+const updateData = asyncHandler(async (req, res) => {
+	
+	
+});
+
+const deleteData = asyncHandler(async (req, res) => {
+	MockData.findByIdAndDelete(req.params.id, function (err, docs) {
+		if (err) {
+			console.log(err);
+			res.status(404).json({message : "Data not found"});
+		}
+		else {
+			console.log(data);
+		}
+	});
+	
+});
+
+module.exports = { getData, addData, getDataById, updateData, deleteData };

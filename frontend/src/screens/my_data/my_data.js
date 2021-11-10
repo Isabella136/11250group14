@@ -12,17 +12,25 @@ const MyData = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-
-    }
-  };
+  
 
   //user authorization
   const config = {
     headers: {
       Authorization: `Bearer ${userInfo.token}`,
     },
+  };
+  
+  const deleteHandler = async(id) => {
+    if (window.confirm("Are you sure?")) {
+		try {
+			const {res} = await axios.delete(`/api/data/${id}`, config);
+				
+		}
+		catch(error) {
+			console.log(error);
+		}
+    }
   };
 
   const fetchData = async () => {
@@ -62,7 +70,7 @@ const MyData = () => {
                         </span>
                       <div>
                         <Button href={`/data/${mockdata._id}`}>Edit</Button>
-                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(data._id)}>
+                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(mockdata._id)}>
                           Delete
                         </Button>
                       </div>
