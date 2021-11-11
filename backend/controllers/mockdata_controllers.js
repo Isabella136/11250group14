@@ -19,7 +19,7 @@ const getData = asyncHandler(async (req, res) => {
     "selector": {
       "user": req.user._id
     },
-    "fields": ["_id", "elecConsumption", "elecCost", "waterConsumption", "waterCost", "gasConsumption"]
+    "fields": ["_id", "elecConsumption", "elecCost", "waterConsumption", "waterCost", "gasConsumption", "createdAt", "updatedAt"]
   };
 
   await db.find(query, function(err, data) {
@@ -45,6 +45,10 @@ const addData = asyncHandler(async (req, res) => {
   const { elecConsumption, elecCost, waterConsumption,
   waterCost, gasConsumption } = req.body;
 
+  const currentTmestamp = Date.now();
+  const createdAt = new Date(currentTmestamp);
+  const updatedAt = new Date(currentTmestamp);
+
   //var cloudant = new Cloudant({ url: 'https://ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix.cloudantnosqldb.appdomain.cloud', plugins: { iamauth: { iamApiKey: 'B5rN-V2C8VsmoVl4iXlGFNwqeZsjVBx36CvRwXz0bPEQ' }  } });
   //var db = cloudant.db.use("data");
 
@@ -52,7 +56,7 @@ const addData = asyncHandler(async (req, res) => {
 
   console.log("Creating data document");
   // specify the id of the document so you can update and delete it later
-  await db.insert({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption}, function(err, data) {
+  await db.insert({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption, createdAt: createdAt, updatedAt: updatedAt}, function(err, data) {
 
     if(data) {
       var responseJson =
@@ -61,7 +65,9 @@ const addData = asyncHandler(async (req, res) => {
         "elecCost": elecCost,
         "waterConsumption": waterConsumption,
         "waterCost": waterCost,
-        "gasConsumption": gasConsumption
+        "gasConsumption": gasConsumption,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt
       };
 
       res.status(200);
