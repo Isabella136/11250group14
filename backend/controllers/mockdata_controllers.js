@@ -7,7 +7,7 @@ var cloudant;
 var db;
 
 const connectDB = () => {
-  cloudant = new Cloudant({ url: 'https://ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix.cloudantnosqldb.appdomain.cloud', plugins: { iamauth: { iamApiKey: 'B5rN-V2C8VsmoVl4iXlGFNwqeZsjVBx36CvRwXz0bPEQ' }  } });
+  var cloudant = new Cloudant({ url: 'https://apikey-v2-32u42j8nnmw8i8o5isa5k73r0zzzcnthi8w7g6c9wnjk:cd7bb0894a63217aff203c2b862ad2fe@172c271b-e2fa-4804-8a56-13d4306682be-bluemix.cloudantnosqldb.appdomain.cloud', plugins: { iamauth: { iamApiKey: 'SVp5S642HYROYgP3TTSMPdqPWzC3iLZERAPFu_yCV_vn' }  } });
   db = cloudant.db.use("data");
 };
 
@@ -53,8 +53,6 @@ const addData = asyncHandler(async (req, res) => {
   console.log("Creating data document");
   // specify the id of the document so you can update and delete it later
   await db.insert({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption}, function(err, data) {
-    console.log('Error:', err);
-    console.log('Data:', data);
 
     if(data) {
       var responseJson =
