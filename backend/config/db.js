@@ -25,6 +25,7 @@ const connectDB = async () => {
 
   //cloudant database connection
   var cloudant = new Cloudant({ url: 'https://ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix.cloudantnosqldb.appdomain.cloud', plugins: { iamauth: { iamApiKey: 'B5rN-V2C8VsmoVl4iXlGFNwqeZsjVBx36CvRwXz0bPEQ' }  } });
+  console.log("Cloudant Databases Found: ")
   cloudant.db.list(function(err, body) {
     body.forEach(function(db) {
       console.log(db);

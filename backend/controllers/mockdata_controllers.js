@@ -23,9 +23,6 @@ const getData = asyncHandler(async (req, res) => {
   };
 
   await db.find(query, function(err, data) {
-    console.log('Error:', err);
-    console.log('Data:', data);
-
     res.json(data.docs);
   });
 });
