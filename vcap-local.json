@@ -1,0 +1,18 @@
+{
+    "services": {
+        "cloudantNoSQLDB": {
+            "credentials": {
+              "apikey": "B5rN-V2C8VsmoVl4iXlGFNwqeZsjVBx36CvRwXz0bPEQ",
+              "host": "ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix.cloudantnosqldb.appdomain.cloud",
+              "iam_apikey_description": "Auto-generated for key f10d1b5a-1a5d-4648-bd09-f340ae31bdc0",
+              "iam_apikey_name": "carbonzeroteam",
+              "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+              "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/8307d003fdcf4f51ad03f097f9cc3df8::serviceid:ServiceId-c2bce362-2881-408b-b7a8-fa86427cd1ea",
+              "url": "https://ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix.cloudantnosqldb.appdomain.cloud",
+              "username": "ca4957e3-35db-48ae-b830-5f66e31f42be-bluemix"
+            }
+            ,
+            "label": "cloudantNoSQLDB"
+        }
+    }
+}
