@@ -40,6 +40,7 @@ const Header = (setSearch) => {
               <>
                 <Nav.Link href="/mydata">My Data</Nav.Link>
                 <Nav.Link href="/mygraph">My Graph</Nav.Link>
+                <Nav.Link href="/recommendations">Recommendations</Nav.Link>
                 <NavDropdown title={`${userInfo.name}`} id="collasible-nav-dropdown">
                   <NavDropdown.Item
                   onClick={logoutHandler}>
