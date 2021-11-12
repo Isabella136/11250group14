@@ -28,20 +28,6 @@ const getData = asyncHandler(async (req, res) => {
 });
 
 const addData = asyncHandler(async (req, res) => {
-  /*const { elecConsumption, elecCost, waterConsumption,
-  waterCost, gasConsumption } = req.body;
-
-  if (!elecConsumption || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
-    throw new Error("Please fill out all fields");
-  }
-
-  else {
-    const data = new MockData({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption});
-    const dataAdded = await data.save();
-
-    res.status(201).json(dataAdded);
-  }*/
-
   const { elecConsumption, elecCost, waterConsumption,
   waterCost, gasConsumption } = req.body;
 
@@ -77,16 +63,82 @@ const addData = asyncHandler(async (req, res) => {
 });
 
 const getDataById = asyncHandler(async (req, res) => {
-  const data = await MockData.findById(req.params.id);
+  const id = req.params.id;
 
+  connectDB();
+
+  db.get(id, (err, data) => {
+    if(data) {
+      res.json(data);
+    }
+
+    else {
+      res.status(404).json({ message: "Data not found"});
+    }
+  });
+
+});
+
+const deleteData = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+
+  connectDB();
+
+  db.get(id, function(err, data) {
   if(data) {
-    res.json(data);
+    var latestRev = data._rev;
+    db.destroy(id, latestRev, function(err, data, header) {
+      if(!err) {
+          res.status(200).json({ message: "Data successfully deleted"});
+      }
+
+      else {
+        res.status(404).json({ message: "Data not deleted"});
+      }
+    });
   }
 
   else {
     res.status(404).json({ message: "Data not found"});
   }
-
+  });
 });
 
-module.exports = { getData, addData, getDataById };
+const updateData = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const { elecConsumption, elecCost, waterConsumption,
+  waterCost, gasConsumption } = req.body;
+  const currentTmestamp = Date.now();
+
+  connectDB();
+
+  db.get(id, function(err, data) {
+  if(data) {
+    var latestRev = data._rev;
+    const createdAt = data.createdAt;
+    const updatedAt = new Date(currentTmestamp);
+    db.insert({ id: id, user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption, createdAt: createdAt, updatedAt: updatedAt}, function(err, data) {
+      if(data) {
+        var responseJson =
+        {
+          "elecConsumption": elecConsumption,
+          "elecCost": elecCost,
+          "waterConsumption": waterConsumption,
+          "waterCost": waterCost,
+          "gasConsumption": gasConsumption,
+          "createdAt": createdAt,
+          "updatedAt": updatedAt
+        };
+
+        res.status(200);
+        res.json(responseJson);
+      }
+    });
+  }
+  else {
+    res.status(404).json({ message: "Data not found"});
+  }
+  });
+});
+
+module.exports = { getData, addData, getDataById, deleteData, updateData };
