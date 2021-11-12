@@ -215,7 +215,7 @@ class SubmitButton extends React.Component {
 		}
 		return (
 		<div className = "submitButton">
-		{this.props.error.message && <ErrorMessage variant="danger">{this.props.error.message}</ErrorMessage>} //display message containing error information
+		{this.props.error.message && <ErrorMessage variant="danger">{this.props.error.message}</ErrorMessage>}
 		<Button 
 			variant="contained"
 			disabled={disableButton}
