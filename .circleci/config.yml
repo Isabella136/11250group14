@@ -29,7 +29,6 @@ jobs:
           install-npm: true
       - run: node --version
 
-
   build:
     docker:
       - image: cimg/base:stable

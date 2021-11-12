@@ -1,0 +1,6 @@
+[2021-11-10T22:19:35.387] [INFO] default - 1636600775387:INFO: Connect success! Connected to DB: data
+[2021-11-10T22:19:35.401] [INFO] default - 1636600775401:INFO: mainline(): Initializing Cloudant... Done.
+[2021-11-10T22:19:35.489] [INFO] default - 1636600775489:INFO: mainline(): Script start at: 11/10/2021, 10:19:35 PM
+[2021-11-10T22:19:35.489] [INFO] default - 1636600775489:INFO: mainline(): Loading data for item...
+[2021-11-10T22:19:35.489] [INFO] default - 1636600775489:INFO: loadData(): Loading data files...
+[2021-11-10T22:19:35.491] [ERROR] default - 1636600775491:ERROR: mainline()(): Better luck next time: The "path" argument must be of type string or an instance of Buffer or URL. Received undefined
