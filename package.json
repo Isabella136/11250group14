@@ -7,7 +7,8 @@
     "start": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm start\" \"npm run client\"",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "load-db": "node ./backend/utils/load-cloudant"
   },
   "jest": {
     "verbose": true,
@@ -28,6 +29,7 @@
   "author": "Chance Onyiorah",
   "license": "ISC",
   "dependencies": {
+    "@cloudant/cloudant": "^4.5.1",
     "@shelf/jest-mongodb": "^2.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -43,6 +45,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
     "mongoose": "^5.13.7",
     "node": "^14.18.1",
     "nodemailer": "^6.7.0",
@@ -56,6 +59,8 @@
     "react-scripts": "4.0.3",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
+    "silverlining": "^1.24.8",
+    "uuidv4": "^6.2.12",
     "web-vitals": "^1.1.2"
   },
   "devDependencies": {

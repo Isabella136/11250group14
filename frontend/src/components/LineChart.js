@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const LineChart = ({}) => {
+const LineChart = () => {
   const [data, setData] = useState([]);
 
   const userLogin = useSelector((state) => state.userLogin);
