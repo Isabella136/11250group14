@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import MainScreen from "../../components/main_screen";
+import ErrorMessage from "../../components/error_message";
 import axios from "axios";
-import { Button, Card, Accordion} from "react-bootstrap";
+import { Button, Card, Form} from "react-bootstrap";
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import InputAdornment from '@mui/material/InputAdornment';
 
 const EditPage = ({match, history}) => {
 
@@ -13,7 +14,7 @@ const EditPage = ({match, history}) => {
 	
 	//create state for edit page that holds the selected mockdata
 	//const [data, setData] = useState();
-	const [elecConsumption, setElecConsumption] = useState();
+	const [elecConsumptio, setElecConsumption] = useState();
 	const [elecCost, setElecCost] = useState();
 	const [waterConsumption, setWaterConsumption] = useState();
 	const [waterCost, setWaterCost] = useState();
@@ -23,33 +24,54 @@ const EditPage = ({match, history}) => {
 	
 	useEffect(() => {
 		const fetchData = async() => {
-			const {mockData} = await axios.get(`/api/data/${match.params.id}`);
-			setElecConsumption(mockData.elecConsumption);
-			setElecCost(mockData.elecCost);
-			setWaterConsumption(mockData.waterConsumption);
-			setWaterCost(mockData.waterCost);
-			setGasConsumption(mockData.gasConsumption);
-			setDate(mockData.updatedAt);
-		}
+			const {data} = await axios.get(`/api/data/${match.params.id}`);
+			
+			setElecConsumption(data.elecConsumption);
+			setElecCost(data.elecCost);
+			setWaterConsumption(data.waterConsumption);
+			setWaterCost(data.waterCost);
+			setGasConsumption(data.gasConsumption);
+			setDate(data.updatedAt);
+		};
 		
 		fetchData();
 		setError("");
-	}, [match.params.id, data.updatedAt]);
+	}, [match.params.id, date]);
 	
-	const editHandler = (e) => 
-		e.preventDefault;
-		if (!elecConsumption || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
+	//user authorization
+	const config = {
+		headers: {
+		Authorization: `Bearer ${userInfo.token}`,
+		user: userInfo._id
+		},
+	};
+  
+	const editHandler = async(e) => {
+		e.preventDefault();
+		if (!elecConsumptio || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
 			setError("Please fill out all fields");
 			return;
 		}
 		setError("");
 		//FIXME: submit using axios
+		try {
+			const {data} = await axios.put(`/api/data/${match.params.id}`, {
+					elecConsumptio,
+					elecCost,
+					waterConsumption,
+					waterCost,
+					gasConsumption
+			}, config);
+		}
+		catch(error) {
+			
+		}
 		
 		history.push("/mydata");
 	}
 	
 	return (
-		<MainScreen title={`Editing Data from {date}`}
+		<MainScreen title={`Editing Data from ${date.substring(0,10)}`}>
 			<Card>
 				<Card.Header>Edit Data</Card.Header>
 				<Card.Body>
@@ -62,7 +84,7 @@ const EditPage = ({match, history}) => {
 							as="textarea"
 							placeholder="Enter electricity consumption in kWh"
 							rows={1}
-							value={elecConsumption}
+							value={elecConsumptio}
 							onChange={(e)=>setElecConsumption(e.target.value)}
 							endAdornment={<InputAdornment position="end">
 											kWh
@@ -132,8 +154,8 @@ const EditPage = ({match, history}) => {
 					</Form>
 				</Card.Body>
 				
-				<Card.Footer className="text-muted">
-					Updated on = {date.substring(0, 10)}
+				<Card.Footer className = "text-muted">
+					Updated on : {date.substring(0, 10)}
 				</Card.Footer>
 			</Card>
 		</MainScreen>

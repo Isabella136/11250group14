@@ -8,6 +8,7 @@ import MyGraph from "./screens/my_graph/my_graph";
 import MyData from "./screens/my_data/my_data";
 import { Route, BrowserRouter } from "react-router-dom";
 import InputPage from "./screens/input_page/input_page";
+import EditPage from "./screens/edit_page/edit_page";
 
 
 const App = () => (
@@ -20,6 +21,7 @@ const App = () => (
       <Route path='/mydata' component={MyData} exact />
       <Route path='/mygraph' component={MyGraph} exact />
       <Route path='/createnote' component={InputPage} exact />
+	  <Route path="/dataedit/:id" component={EditPage} />
     </main>
     <Footer />
   </BrowserRouter>
