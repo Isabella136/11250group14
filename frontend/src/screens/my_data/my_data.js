@@ -48,7 +48,7 @@ const MyData = () => {
       <MainScreen title={`Welcome Back ${userInfo && userInfo.name}!`}>
         <Link to='createnote'>
           <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
-            Create New Note
+            Add New Data
           </Button>
         </Link>
             {
