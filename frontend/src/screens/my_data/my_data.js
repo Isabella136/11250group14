@@ -5,14 +5,14 @@ import {Link} from "react-router-dom";
 import MainScreen from "../../components/main_screen";
 import axios from "axios";
 
-const MyData = () => {
+const MyData = ({history}) => {
 
   const [data, setData] = useState([]);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  
+
 
   //user authorization
   const config = {
@@ -20,17 +20,18 @@ const MyData = () => {
       Authorization: `Bearer ${userInfo.token}`,
     },
   };
-  
+
   const deleteHandler = async(id) => {
     if (window.confirm("Are you sure?")) {
 		try {
 			const {res} = await axios.delete(`/api/data/${id}`, config);
-				
+
 		}
 		catch(error) {
 			console.log(error);
 		}
     }
+    fetchData();
   };
 
   const fetchData = async () => {

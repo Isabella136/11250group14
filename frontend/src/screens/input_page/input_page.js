@@ -6,7 +6,7 @@ import InputForm from "../../components/InputForm/InputForm";
 
 
 const InputPage = ({ history }) => {
-	
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -14,9 +14,10 @@ const InputPage = ({ history }) => {
     if (window.confirm("Are you sure?")) {
 
     }
+		
   };
-  
-  
+
+
 
   //user authorization
   const config = {
@@ -25,7 +26,7 @@ const InputPage = ({ history }) => {
 	  user: userInfo._id
     },
   };
- 
+
 
     return (
       <MainScreen title={`Welcome Back ${userInfo && userInfo.name}!`}>

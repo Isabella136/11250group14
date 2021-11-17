@@ -11,7 +11,7 @@ const EditPage = ({match, history}) => {
 
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
-	
+
 	//create state for edit page that holds the selected mockdata
 	//const [data, setData] = useState();
 	const [elecConsumptio, setElecConsumption] = useState();
@@ -21,11 +21,11 @@ const EditPage = ({match, history}) => {
 	const [gasConsumption, setGasConsumption] = useState();
 	const [date, setDate] = useState();
 	const [error, setError] = useState();
-	
+
 	useEffect(() => {
 		const fetchData = async() => {
 			const {data} = await axios.get(`/api/data/${match.params.id}`);
-			
+
 			setElecConsumption(data.elecConsumption);
 			setElecCost(data.elecCost);
 			setWaterConsumption(data.waterConsumption);
@@ -33,11 +33,11 @@ const EditPage = ({match, history}) => {
 			setGasConsumption(data.gasConsumption);
 			setDate(data.updatedAt);
 		};
-		
+
 		fetchData();
 		setError("");
 	}, [match.params.id, date]);
-	
+
 	//user authorization
 	const config = {
 		headers: {
@@ -45,7 +45,7 @@ const EditPage = ({match, history}) => {
 		user: userInfo._id
 		},
 	};
-  
+
 	const editHandler = async(e) => {
 		e.preventDefault();
 		if (!elecConsumptio || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
@@ -64,12 +64,13 @@ const EditPage = ({match, history}) => {
 			}, config);
 		}
 		catch(error) {
-			
+
 		}
-		
+
 		history.push("/mydata");
+		//${date.substring(0,10)}
 	}
-	
+
 	return (
 		<MainScreen title={`Editing Data from ${date.substring(0,10)}`}>
 			<Card>
@@ -77,7 +78,7 @@ const EditPage = ({match, history}) => {
 				<Card.Body>
 					<Form onSubmit={editHandler}>
 						{error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-						
+
 						<Form.Group controlId="elecConsumption">
 						<Form.Label>Electricity Consumption</Form.Label>
 						<Form.Control
@@ -91,7 +92,7 @@ const EditPage = ({match, history}) => {
 										</InputAdornment>}
 						/>
 						</Form.Group>
-						
+
 						<Form.Group controlId="elecCost">
 						<Form.Label>Electricity Cost</Form.Label>
 						<Form.Control
@@ -105,7 +106,7 @@ const EditPage = ({match, history}) => {
 										</InputAdornment>}
 						/>
 						</Form.Group>
-						
+
 						<Form.Group controlId="waterConsumption">
 						<Form.Label>Water Consumption</Form.Label>
 						<Form.Control
@@ -119,7 +120,7 @@ const EditPage = ({match, history}) => {
 										</InputAdornment>}
 						/>
 						</Form.Group>
-						
+
 						<Form.Group controlId="waterCost">
 						<Form.Label>Water Cost</Form.Label>
 						<Form.Control
@@ -133,7 +134,7 @@ const EditPage = ({match, history}) => {
 										</InputAdornment>}
 						/>
 						</Form.Group>
-						
+
 						<Form.Group controlId="gasConsumption">
 						<Form.Label>Gas Consumption</Form.Label>
 						<Form.Control
@@ -147,13 +148,13 @@ const EditPage = ({match, history}) => {
 										</InputAdornment>}
 						/>
 						</Form.Group>
-						
+
 						<Button variant="primary" type="submit">
 							Update Data
 						</Button>
 					</Form>
 				</Card.Body>
-				
+
 				<Card.Footer className = "text-muted">
 					Updated on : {date.substring(0, 10)}
 				</Card.Footer>
