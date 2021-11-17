@@ -33,9 +33,8 @@ const EditPage = ({match, history}) => {
 			setGasConsumption(data.gasConsumption);
 			setDate(data.updatedAt);
 		};
-
-		fetchData();
 		setError("");
+		fetch();
 	}, [match.params.id, date]);
 
 	//user authorization
@@ -156,7 +155,7 @@ const EditPage = ({match, history}) => {
 				</Card.Body>
 
 				<Card.Footer className = "text-muted">
-					Updated on : {date.substring(0, 10)}
+					Updated on : {date.substring(0,10)}
 				</Card.Footer>
 			</Card>
 		</MainScreen>
