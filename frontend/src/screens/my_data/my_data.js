@@ -12,17 +12,25 @@ const MyData = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-
-    }
-  };
+  
 
   //user authorization
   const config = {
     headers: {
       Authorization: `Bearer ${userInfo.token}`,
     },
+  };
+  
+  const deleteHandler = async(id) => {
+    if (window.confirm("Are you sure?")) {
+		try {
+			const {res} = await axios.delete(`/api/data/${id}`, config);
+				
+		}
+		catch(error) {
+			console.log(error);
+		}
+    }
   };
 
   const fetchData = async () => {
@@ -58,11 +66,11 @@ const MyData = () => {
                               fontSize: 18,
                             }}
                         >
-                        Created On: {mockdata.createdAt}
+                        Created On: {mockdata.createdAt.substring(0,10)}
                         </span>
                       <div>
-                        <Button href={`/data/${mockdata._id}`}>Edit</Button>
-                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(data._id)}>
+                        <Button href={`/dataedit/${mockdata._id}`}>Edit</Button>
+                        <Button variant='danger' className="mx-2" onClick={() => deleteHandler(mockdata._id)}>
                           Delete
                         </Button>
                       </div>
@@ -75,7 +83,7 @@ const MyData = () => {
                       <p>Water Cost: {mockdata.waterCost}</p>
                       <p>Gas Consumption: {mockdata.gasConsumption}</p>
                       <footer className="blockquote-footer">
-                        Updated On -{mockdata.updatedAt}
+                        Updated On : {mockdata.updatedAt.substring(0,10)}
                       </footer>
                     </blockquote>
                     </Card.Body>
