@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import MainScreen from "../../components/main_screen";
 import axios from "axios";
 
-const MyData = ({history}) => {
+const MyData = () => {
 
   const [data, setData] = useState([]);
 
@@ -31,15 +31,12 @@ const MyData = ({history}) => {
 			console.log(error);
 		}
     }
-    fetchData();
   };
 
   const fetchData = async () => {
     const { data } = await axios.get("/api/data", config);
     setData(data);
   };
-
-  console.log(data);
 
   useEffect(() => {
     fetchData();
@@ -49,7 +46,7 @@ const MyData = ({history}) => {
       <MainScreen title={`Welcome Back ${userInfo && userInfo.name}!`}>
         <Link to='createnote'>
           <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
-            Create New Note
+            Add New Data
           </Button>
         </Link>
             {

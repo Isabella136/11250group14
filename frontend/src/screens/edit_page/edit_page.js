@@ -14,12 +14,12 @@ const EditPage = ({match, history}) => {
 
 	//create state for edit page that holds the selected mockdata
 	//const [data, setData] = useState();
-	const [elecConsumptio, setElecConsumption] = useState();
+	const [elecConsumption, setElecConsumption] = useState();
 	const [elecCost, setElecCost] = useState();
 	const [waterConsumption, setWaterConsumption] = useState();
 	const [waterCost, setWaterCost] = useState();
 	const [gasConsumption, setGasConsumption] = useState();
-	const [date, setDate] = useState();
+	const [updatedAt, setDate] = useState();
 	const [error, setError] = useState();
 
 	useEffect(() => {
@@ -33,9 +33,10 @@ const EditPage = ({match, history}) => {
 			setGasConsumption(data.gasConsumption);
 			setDate(data.updatedAt);
 		};
+
+		fetchData();
 		setError("");
-		fetch();
-	}, [match.params.id, date]);
+	}, [match.params.id, updatedAt]);
 
 	//user authorization
 	const config = {
@@ -47,7 +48,7 @@ const EditPage = ({match, history}) => {
 
 	const editHandler = async(e) => {
 		e.preventDefault();
-		if (!elecConsumptio || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
+		if (!elecConsumption || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
 			setError("Please fill out all fields");
 			return;
 		}
@@ -55,7 +56,7 @@ const EditPage = ({match, history}) => {
 		//FIXME: submit using axios
 		try {
 			const {data} = await axios.put(`/api/data/${match.params.id}`, {
-					elecConsumptio,
+					elecConsumption,
 					elecCost,
 					waterConsumption,
 					waterCost,
@@ -67,11 +68,10 @@ const EditPage = ({match, history}) => {
 		}
 
 		history.push("/mydata");
-		//${date.substring(0,10)}
 	}
 
 	return (
-		<MainScreen title={`Editing Data from ${date.substring(0,10)}`}>
+		<MainScreen title={`Editing Data`}>
 			<Card>
 				<Card.Header>Edit Data</Card.Header>
 				<Card.Body>
@@ -84,7 +84,7 @@ const EditPage = ({match, history}) => {
 							as="textarea"
 							placeholder="Enter electricity consumption in kWh"
 							rows={1}
-							value={elecConsumptio}
+							value={elecConsumption}
 							onChange={(e)=>setElecConsumption(e.target.value)}
 							endAdornment={<InputAdornment position="end">
 											kWh
@@ -154,12 +154,8 @@ const EditPage = ({match, history}) => {
 					</Form>
 				</Card.Body>
 
-				<Card.Footer className = "text-muted">
-					Updated on : {date.substring(0,10)}
-				</Card.Footer>
 			</Card>
 		</MainScreen>
 	);
 };
-
 export default EditPage;
