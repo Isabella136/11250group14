@@ -1,0 +1,15 @@
+
+
+.textFields {
+	margin : 100px 50px 100px 50px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.text-row {
+	margin-right: 10px;
+}
+
+.submitButton {
+	margin : 0px 50px 0px 50px;
+}

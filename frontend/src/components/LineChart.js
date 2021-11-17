@@ -35,59 +35,190 @@ const waterConsumptions = data.map((mockdata) => mockdata.waterConsumption);
 const waterCosts = data.map((mockdata) => mockdata.waterCost);
 const gasConsumptions = data.map((mockdata) => mockdata.gasConsumption);
 
-const chartData = {
-    labels: data.map((mockdata) => (mockdata.createdAt)), //timestamps, find a function to get in different format
-    datasets: [
-        {
-            label: "Total Carbon Footprint", //record type
-            data: data.map((mockdata) => (mockdata.value)),
-            fill: false,
-            borderColor: 'rgb(0, 200, 100)',
-            backgroundColor: 'rgb(0, 200, 100)'
-        },
-        {
-            label: 'Electricity Consumption (kWH)',
-            data: [600, 500, 900, 100, 100, 100, 50],
-            fill: false,
-            borderColor: 'rgb(255, 215, 0)',
-            backgroundColor: 'rgb(255, 215, 0)',
-        }
-    ]
+// Adding to create total consumption
+const totalConsumptions = [];
+for (let i = 0; i < elecConsumptions.length; i++) {
+  totalConsumptions[i] = elecConsumptions[i] + waterConsumptions[i] + gasConsumptions[i];
 }
 
-const options = {
-    scales: {
-        y: {
-            beginAtZero: true,
-            title: {
-                display: true,
-                text: "Carbon Footprint (kg CO2)"
-            }
-        },
+// Adding to create consumptions over time
+const elecConsumptionsOverTime = elecConsumptions.map((s => a => s += a)(0));
+const waterConsumptionsOverTime = waterConsumptions.map((s => a => s += a)(0));
+const gasConsumptionsOverTime = gasConsumptions.map((s => a => s += a)(0));
+const totalConsumptionsOverTime = totalConsumptions.map((s => a => s += a)(0));
+
+
+
+const chartDataOverTime = {
+  labels: data.map((mockdata) => (mockdata.createdAt).substring(0, 10)), 
+  datasets: [
+      {
+          label: "Total Carbon Footprint", //record type
+          data: totalConsumptionsOverTime,
+          fill: false,
+          borderColor: 'rgb(0, 200, 100)',
+          backgroundColor: 'rgb(0, 200, 100)'
+      },
+      {
+          label: 'Electricity Consumption',
+          data: elecConsumptionsOverTime,
+          fill: false,
+          borderColor: 'rgb(255, 215, 0)',
+          backgroundColor: 'rgb(255, 215, 0)',
+      },
+      {
+        label: 'Water Consumption',
+        data: waterConsumptionsOverTime,
+        fill: false,
+        borderColor: 'rgb(0, 100, 200)',
+        backgroundColor: 'rgb(0, 100, 200)',
+      },
+      {
+        label: 'Gas Consumption',
+        data: gasConsumptionsOverTime,
+        fill: false,
+        borderColor: 'rgb(0, 0, 0)',
+        backgroundColor: 'rgb(0, 0, 0)',
+      }
+  ]
+}
+
+const optionsOverTime = {
+  scales: {
+      y: {
+          beginAtZero: true,
+          title: {
+              display: true,
+              text: "Carbon Footprint (kg CO2)"
+          }
+      },
+      x: {
+          title: {
+              display: true,
+              text: "Date"
+          }
+      }
+  },
+  transitions: {
+    show: {
+      animations: {
         x: {
-            title: {
-                display: true,
-                text: "Date"
-            }
+          from: 0
+        },
+        y: {
+          from: 0
         }
+      }
+    },
+    hide: {
+      animations: {
+        x: {
+          to: 0
+        },
+        y: {
+          to: 0
+        }
+      }
     }
+  },
+  plugins: {
+    title: {
+      display: true,
+      text: "Carbon Footprint Data Over Time",
+    }
+  }
 }
 
-    return (
-      <div className="graphContainer">
-        <p> Carbon Footprint Data Over Time</p>
-        <div className="graph">
-          <div className="dataValues">
-            Electric Consumptions: {elecConsumptions.map(elecConsumption => <p>{elecConsumption}</p>)}
-            Electric Costs: {elecCosts.map(elecCost => <p>{elecCost}</p>)}
-            Water Consumptions: {waterConsumptions.map(waterConsumption => <p>{waterConsumption}</p>)}
-            Water Costs: {waterCosts.map(waterCost => <p>{waterCost}</p>)}
-            Gas Consumptions: {gasConsumptions.map(gasConsumption => <p>{gasConsumption}</p>)}
-          </div>
-          <Line data={chartData} options={options}/>
-        </div>
+const chartDataPerEntry = {
+  labels: data.map((mockdata) => (mockdata.createdAt).substring(0, 10)), 
+  datasets: [
+      {
+          label: "Total Carbon Footprint", //record type
+          data: totalConsumptions,
+          fill: false,
+          borderColor: 'rgb(0, 200, 100)',
+          backgroundColor: 'rgb(0, 200, 100)'
+      },
+      {
+          label: 'Electricity Consumption',
+          data: elecConsumptions,
+          fill: false,
+          borderColor: 'rgb(255, 215, 0)',
+          backgroundColor: 'rgb(255, 215, 0)',
+      },
+      {
+        label: 'Water Consumption',
+        data: waterConsumptions,
+        fill: false,
+        borderColor: 'rgb(0, 100, 200)',
+        backgroundColor: 'rgb(0, 100, 200)',
+      },
+      {
+        label: 'Gas Consumption',
+        data: gasConsumptions,
+        fill: false,
+        borderColor: 'rgb(0, 0, 0)',
+        backgroundColor: 'rgb(0, 0, 0)',
+      }
+  ]
+}
+
+const optionsPerEntry = {
+  scales: {
+      y: {
+          beginAtZero: true,
+          title: {
+              display: true,
+              text: "Carbon Footprint (kg CO2)"
+          }
+      },
+      x: {
+          title: {
+              display: true,
+              text: "Date"
+          }
+      }
+  },
+  transitions: {
+    show: {
+      animations: {
+        x: {
+          from: 0
+        },
+        y: {
+          from: 0
+        }
+      }
+    },
+    hide: {
+      animations: {
+        x: {
+          to: 0
+        },
+        y: {
+          to: 0
+        }
+      }
+    }
+  },
+  plugins: {
+    title: {
+      display: true,
+      text: "Carbon Footprint Data Entries",
+    }
+  }
+}
+
+// Consumptions per Entry graph
+//<Line data={chartDataPerEntry} options={optionsPerEntry}/>
+
+  return (
+    <div className="graphContainer">
+      <div className="graph">
+        <Line data={chartDataOverTime} options={optionsOverTime}/>
       </div>
-    )
+    </div>
+  )
 }
 
 export default LineChart;

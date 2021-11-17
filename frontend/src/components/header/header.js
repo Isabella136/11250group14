@@ -22,7 +22,7 @@ const Header = (setSearch) => {
       <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand>
-          <Link to="/">CarbonZero</Link>
+          <Link to="/" style={{textDecoration: 'none'}}>CarbonZero</Link>
           </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -40,6 +40,7 @@ const Header = (setSearch) => {
               <>
                 <Nav.Link href="/mydata">My Data</Nav.Link>
                 <Nav.Link href="/mygraph">My Graph</Nav.Link>
+                <Nav.Link href="/recommendations">Recommendations</Nav.Link>
                 <NavDropdown title={`${userInfo.name}`} id="collasible-nav-dropdown">
                   <NavDropdown.Item
                   onClick={logoutHandler}>

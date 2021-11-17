@@ -2,6 +2,7 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+//const dbCloudantConnect = require("./config/db");
 const userRoutes = require("./routes/user_routes");
 const mockdataRoutes = require("./routes/mockdata_routes");
 const { notFound, errorHandler } = require("./middlewares/error_middleware");
@@ -9,6 +10,7 @@ const { notFound, errorHandler } = require("./middlewares/error_middleware");
 const app = express();
 dotenv.config();
 connectDB();
+//dbCloudantConnect();
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
