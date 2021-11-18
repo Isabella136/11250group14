@@ -6,10 +6,10 @@ import LoginPage from "./screens/login_page/login_page";
 import SignupPage from "./screens/signup_page/signup_page";
 import MyGraph from "./screens/my_graph/my_graph";
 import MyData from "./screens/my_data/my_data";
+import RecommendationsPage from "./screens/recommendation_page/recommendation_page";
 import { Route, BrowserRouter } from "react-router-dom";
 import InputPage from "./screens/input_page/input_page";
 import EditPage from "./screens/edit_page/edit_page";
-
 
 const App = () => (
   <BrowserRouter>
@@ -21,7 +21,8 @@ const App = () => (
       <Route path='/mydata' component={MyData} exact />
       <Route path='/mygraph' component={MyGraph} exact />
       <Route path='/createnote' component={InputPage} exact />
-	  <Route path="/dataedit/:id" component={EditPage} />
+	    <Route path="/dataedit/:id" component={EditPage} />
+      <Route path='/recommendations' component={RecommendationsPage} exact />
     </main>
     <Footer />
   </BrowserRouter>
