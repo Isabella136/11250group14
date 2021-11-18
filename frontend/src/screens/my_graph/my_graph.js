@@ -6,13 +6,13 @@ import MainScreen from "../../components/main_screen";
 
 const MyGraph = () => {
   //problem with total charts when adding edited data
+        //<LineChartDataTotal />
+        //<LineChartCostsTotal />
   return (
       <MainScreen title="My Graph">
         <div className='rowC'>
           <LineChartDataEntry />
-          <!--LineChartDataTotal /-->
           <LineChartCosts />
-          <!--LineChartCostsTotal /-->
         </div>
       </MainScreen>
   )
