@@ -46,6 +46,10 @@ const EditPage = ({match, history}) => {
 		},
 	};
 
+	const cancelEdit = async(e) => {
+		history.push("/mydata");
+	}
+
 	const editHandler = async(e) => {
 		e.preventDefault();
 		if (!elecConsumption || !elecCost || !waterConsumption || !waterCost || !gasConsumption) {
@@ -150,6 +154,9 @@ const EditPage = ({match, history}) => {
 
 						<Button variant="primary" type="submit">
 							Update Data
+						</Button>
+						<Button style={{marginLeft: 30}} variant="primary" type="submit" onClick={cancelEdit}>
+							Cancel
 						</Button>
 					</Form>
 				</Card.Body>

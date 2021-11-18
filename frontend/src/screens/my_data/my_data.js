@@ -31,6 +31,7 @@ const MyData = () => {
 			console.log(error);
 		}
     }
+    fetchData();
   };
 
   const fetchData = async () => {
