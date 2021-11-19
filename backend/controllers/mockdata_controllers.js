@@ -38,7 +38,7 @@ const addData = asyncHandler(async (req, res) => {
 
   console.log("Creating data document");
   // specify the id of the document so you can update and delete it later
-  await db.insert({ user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption, createdAt: createdAt, updatedAt: updatedAt}, function(err, data) {
+    await db.insert({ _id: createdAt, user: req.user._id, elecConsumption, elecCost, waterConsumption, waterCost, gasConsumption, createdAt: createdAt, updatedAt: updatedAt}, function(err, data) {
 
     if(data) {
       var responseJson =
