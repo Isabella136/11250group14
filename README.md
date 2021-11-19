@@ -8,6 +8,6 @@ Member 4: Ryan Roth \
 
 # To run
 1) Open command line
-2) Type "git clone https://github.com/Isabella136/11250group14.git
+2) Type "git clone https://github.com/Isabella136/11250group14.git"
 3) Run "npm install"
 4) Use command "npm run dev" to open project on local host
