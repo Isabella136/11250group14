@@ -3,7 +3,7 @@ const couchbackup = require('@cloudant/couchbackup');
 const AWS = require('ibm-cos-sdk');
 const moment = require('moment');
 
-function main(params) {
+function backupToS3(params) {
     const s3Bucket = params.bucket;
     const i = params.key.lastIndexOf('.');
     const s3Key = (i < 0) ? params.key + '-' + moment().format('YYYYMMDD-hhmmss') : params.key.substring(0, i) + '-' + moment().format('YYYYMMDD-hhmmss') + params.key.substring(i);
@@ -44,4 +44,4 @@ function main(params) {
         );
     });
 }
-module.exports = { backupToS3 };
+global.main = backupToS3;
