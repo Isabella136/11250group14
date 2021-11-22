@@ -83,7 +83,6 @@
     "jsdom": "18.0.0",
     "jsdom-global": "3.0.2",
     "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "16.9.0",
-    "webpack": "^5.64.2"
+    "react-test-renderer": "16.9.0"
   }
 }
