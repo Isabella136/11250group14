@@ -28,6 +28,8 @@ function backupToS3(params) {
             console.log('Object store upload succeeded');
             console.log(data);
             resolve();
+        }).httpUploadProgress = (progress) => {
+            console.log('S3 upload progress: ' + progress);
         };
         couchbackup.backup(
             srcUrl,
