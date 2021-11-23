@@ -5,7 +5,7 @@ const connectDB = require("./config/db");
 //const dbCloudantConnect = require("./config/db");
 const userRoutes = require("./routes/user_routes");
 const mockdataRoutes = require("./routes/mockdata_routes");
-const { notFound, errorHandler } = require("./middlewares/error_middleware")
+const { notFound, errorHandler } = require("./middlewares/error_middleware");
 
 
 const app = express();
