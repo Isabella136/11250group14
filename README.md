@@ -20,7 +20,7 @@ If Node.js and npm are not installed on your computer, please follow the instruc
 
 1) Open command line
 2) Type “git clone https://github.com/Isabella136/11250group14.git" 
-3) 3) Change the current directory into the project directory using the following command:
+3) Change the current directory into the project directory using the following command:
 ```bash
 cd 11250group14-main
 ```
