@@ -20,8 +20,12 @@ If Node.js and npm are not installed on your computer, please follow the instruc
 
 1) Open command line
 2) Type “git clone https://github.com/Isabella136/11250group14.git" 
-3) Run "npm install"
-4) Use command "npm run dev" to open project on local host
+3) 3) Change the current directory into the project directory using the following command:
+```bash
+cd 11250group14-main
+```
+4) Run "npm install"
+5) Use command "npm run dev" to open project on local host. The project should open automatically in your browser.
 
 
 
