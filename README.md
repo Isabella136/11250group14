@@ -17,6 +17,7 @@ Note: Git, Node.js, and npm are required for the project to work.\
 If Git is not installed in your computer, please follow the instructions highlighted in this link: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git \
 If Node.js and npm are not installed on your computer, please follow the instructions highlighted in this link: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm 
 
+Once Git, Node.js, and npm are installed, follow the steps below.
 
 1) Open command line
 2) Type “git clone https://github.com/Isabella136/11250group14.git" 
