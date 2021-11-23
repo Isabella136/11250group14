@@ -1,10 +1,8 @@
 # 11250group14
-
 Member 1: Nathalie Bonin
 Member 2: Gabriel Brosula 
 Member 3: Chance Onyiorah
 Member 4: Ryan Roth 
-
 
 # CarbonZero
 
@@ -18,6 +16,7 @@ Using IBM's AI capabilities, CarbonZero also provides users personalized recomme
 Note: Git, Node.js, and npm are required for the project to work.
 If Git is not installed in your computer, please follow the instructions highlighted in this link: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 If Node.js and npm are not installed on your computer, please follow the instructions highlighted in this link: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm 
+
 
 1) Open command line
 2) Type “git clone https://github.com/Isabella136/11250group14.git" 
