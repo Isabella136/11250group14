@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user_routes");
 const mockdataRoutes = require("./routes/mockdata_routes");
 const { notFound, errorHandler } = require("./middlewares/error_middleware");
 
+
 const app = express();
 dotenv.config();
 connectDB();
@@ -22,3 +23,13 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on PORT ${PORT}`));
+
+app.get('/recommendations', recommendation)
+function recommendation(req, res) {
+    var spawn = require("child_process").spawn;
+    var process = spawn('python', ["./AImodel/AI_model.py",
+        req.user._id]);
+    process.stdout.on('data', function (data) {
+        res.send(data.toString());
+    })
+}
