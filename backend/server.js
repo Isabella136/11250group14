@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/user_routes");
 const mockdataRoutes = require("./routes/mockdata_routes");
-const AI_route = require(".routes/AI_routes");
+const AI_route = require("./routes/AI_routes");
 const { notFound, errorHandler } = require("./middlewares/error_middleware");
 
 
