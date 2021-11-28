@@ -3,6 +3,6 @@ const recommendation = require("../controllers/AI_controllers");
 
 const router = express.Router();
 
-router.route('/rec').get(recommendation);
+router.route('/').get(recommendation);
 
 module.exports = router;

@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/data", mockdataRoutes);
-app.use("/api/data",AI_route);
+app.use("/api/rec",AI_route);
 
 app.use(notFound);
 app.use(errorHandler);
