@@ -13,11 +13,12 @@ With a reduced set of metrics and a data visualization dashboard, CarbonZero mak
 Using IBM's AI capabilities, CarbonZero also provides users personalized recommendations on how to reduce their energy usage and carbon footprint. This will allow users to have a convenient place to view not only how they are impacting the environment, but also what they can do to improve their own impact.
 
 ## To run CarbonZero
-Note: Git, Node.js, and npm are required for the project to work.\
+Note: Git, Node.js, Python, and npm are required for the project to work.\
 If Git is not installed in your computer, please follow the instructions highlighted in this link: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git \
-If Node.js and npm are not installed on your computer, please follow the instructions highlighted in this link: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm 
+If Node.js and npm are not installed on your computer, please follow the instructions highlighted in this link: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm \
+If Python is not installed on your computer, please follow the following instructions highlighted in this link: https://www.python.org/downloads/ 
 
-Once Git, Node.js, and npm are installed, follow the steps below.
+Once Git, Node.js, Python, and npm are installed, follow the steps below.
 
 1) Open command line
 2) Type “git clone https://github.com/Isabella136/11250group14.git" 
